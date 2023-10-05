@@ -10,13 +10,11 @@
 
 #profilecontainer {
   margin-left: 30px;
-
 }
 
 .avatar {
   width: 100px;
   border-radius: 5%;
-  /* padding-left: 10px; */
 }
 
 h1 {
@@ -29,9 +27,8 @@ h1 {
   padding: 5px;
   margin-left: 40px;
   border-radius: 5px;
-  /* margin-top: 200px; */
 }
 
 #fetchbutton {
-  background-color: #00ffff;
+  background-color: #0ff;
 }
