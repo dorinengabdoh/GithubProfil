@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Profile Viewer</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1><i>GitHub Profile Viewer</i></h1>
+      <input type="text" id="usernameInput" placeholder="GitHub Username" />
+      <button id="fetchButton">Fetch Profil</button>
+      <div id="profileContainer">
+       <!-- Profile information will be displayed here -->
+      </div>
+    </div>
+
+    <script>
+      const usernameInput = document.getElementById("usernameInput");
+      const fetchButton = document.getElementById("fetchButton");
+      const profileContainer = document.getElementById("profileContainer");
+
+      fetchButton.addEventListener("click", () => {
+        const username = usernameInput.value;
+        if (username) {
+          fetch(`https://api.github.com/users/${username}`)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`GitHub API Error: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              // Display user profile information
+              profileContainer.innerHTML = `
+                            <h2>Username: ${data.name || data.login}</h2>
+                            <span> ${data.avatar_url} </span>
+                            <div>
+                               <img class="avatar" src="${data.avatar_url}" alt="github-picture">
+                            </div>
+                            <p>Followers: ${data.followers}</p>
+                            <p>Following: ${data.following}</p>
+                            <p>Repositories: ${data.public_repos}</p>
+                            <p>Location: ${data.location || "N/A"}</p>
+                            <p>URL: <a href="${
+                              data.html_url
+                            }" target="_blank">${data.html_url}</a></p>
+                        `;
+            })
+            .catch((error) => {
+              profileContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
