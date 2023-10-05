@@ -10,17 +10,17 @@
   <body>
     <div class="container">
       <h1><i>GitHub Profile Viewer</i></h1>
-      <input type="text" id="usernameInput" placeholder="GitHub Username" />
-      <button id="fetchButton">Fetch Profil</button>
-      <div id="profileContainer">
+      <input type="text" id="usernameinput" placeholder="GitHub Username" />
+      <button id="fetchbutton">Fetch Profil</button>
+      <div id="profilecontainer">
        <!-- Profile information will be displayed here -->
       </div>
     </div>
 
     <script>
-      const usernameInput = document.getElementById("usernameInput");
-      const fetchButton = document.getElementById("fetchButton");
-      const profileContainer = document.getElementById("profileContainer");
+      const usernameInput = document.getElementById("usernameinput");
+      const fetchButton = document.getElementById("fetchbutton");
+      const profileContainer = document.getElementById("profilecontainer");
 
       fetchButton.addEventListener("click", () => {
         const username = usernameInput.value;
@@ -34,7 +34,7 @@
             })
             .then((data) => {
               // Display user profile information
-              profileContainer.innerHTML = `
+              profilecontainer.innerHTML = `
                             <h2>Username: ${data.name || data.login}</h2>
                             <span> ${data.avatar_url} </span>
                             <div>
@@ -50,7 +50,7 @@
                         `;
             })
             .catch((error) => {
-              profileContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+              profilecontainer.innerHTML = `<p>Error: ${error.message}</p>`;
             });
         }
       });
